@@ -16,6 +16,9 @@ export class DeviceService {
   imageId: number
   unixTimeValue: number
 
+  /** Poll interval in miliseconds */
+  private _pollingInterval: number = 10000
+
   constructor(private http: HttpClient) { }
 
   createNewDevice(newDeviceData: NewDeviceData[]) {
@@ -24,7 +27,7 @@ export class DeviceService {
 
   /** Get all Items, polling to update the changes from DB */
   getAllItems() {
-    return timer(1, 10000).pipe(
+    return timer(1, this._pollingInterval).pipe(
       // Use switchMap to switch to a new observable each time interval emits a value
       switchMap(() => this.http.get<DeviceMetaData[]>(`${this.apiEndpoint}/items-all/`))
     )
@@ -32,7 +35,7 @@ export class DeviceService {
 
   /** Get 1 item infos, polling to reflect changes in DB */
   getItemById(itemId: number): Observable<DeviceMetaData> {
-    return timer(1, 10000).pipe(
+    return timer(1, this._pollingInterval).pipe(
       // Use switchMap to switch to a new observable each time interval emits a value
       switchMap(() => this.http.get<DeviceMetaData>(`${this.apiEndpoint}/item-details/${itemId}/`)),
     )
