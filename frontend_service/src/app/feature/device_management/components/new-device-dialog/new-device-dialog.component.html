@@ -3,7 +3,7 @@
 <mat-stepper #stepper style="width: 80vw;">
   <!-- Step 1: Fill out your name -->
   <mat-step [stepControl]="firstFormGroup" [errorMessage]="getErrorMessage()">
-    <form [formGroup]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (keydown.enter)="$event.preventDefault()">
       <!-- stepper header -->
       <ng-template matStepLabel>Enter Device Details</ng-template>
       <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px;">
