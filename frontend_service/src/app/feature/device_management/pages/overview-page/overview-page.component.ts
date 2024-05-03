@@ -47,6 +47,7 @@ export class OverviewPageComponent extends BasePageComponent implements OnInit {
 
 
   destroyed$ = new Subject<void>()
+  filterValue: string;
 
   qrCodeDataUrl: string;
 
@@ -73,8 +74,8 @@ export class OverviewPageComponent extends BasePageComponent implements OnInit {
 
   /** Filter datasource as user types */
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.tableDataSource.filter = filterValue.trim().toLowerCase()
+    this.filterValue = (event.target as HTMLInputElement).value
+    this.tableDataSource.filter = this.filterValue.trim().toLowerCase()
   }
 
   /** Get saved data from LocalStorage */
@@ -142,6 +143,7 @@ export class OverviewPageComponent extends BasePageComponent implements OnInit {
   updateDataSource() {
     this.deviceService.getAllItems().pipe(take(1)).subscribe(allItems => {
       this.tableDataSource.data = allItems
+      this.tableDataSource.filter = this.filterValue.trim().toLowerCase()
 
       /** Update starred table data source after updating main data source */
       for (let i = 0; i< this.selectedRow.length; i++) {
