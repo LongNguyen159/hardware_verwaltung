@@ -47,7 +47,7 @@ export class OverviewPageComponent extends BasePageComponent implements OnInit {
 
 
   destroyed$ = new Subject<void>()
-  filterValue: string;
+  filterValue: string = ""
 
   qrCodeDataUrl: string;
 
@@ -249,9 +249,9 @@ export class OverviewPageComponent extends BasePageComponent implements OnInit {
  * - [X] Refactor: Sync with Jan: QR code now requires device description (attribute name: deviceVariant)
  * - [ ] Fix: When POST to `item_history`, `item` should update column `borrowed_by_user` accordingly
  * - [X] Refactor: POST to `item_history` (If the above fix not available, send another request to patch `item`)
- * - [ ] Fix: Filter datasource conflicts with polling: After new poll, filter condition should also apply to newly polled data.
- * - [ ] Mobile app version for Users: Non manipulable components (notes, delete, star, etc).
- * - [ ] Mobile app version for Users: Only show available items.
+ * - [X] Fix: Filter datasource conflicts with polling: After new poll, filter condition should also apply to newly polled data.
+ * - [X] Mobile app version for Users: Non manipulable components (notes, delete, star, etc).
+ * - [X] Mobile app version for Users: Only show available items.
  * - [ ] Mobile app version for Users: Upgrade: If item_name is same, show how many units there are instead of separate rows. Hide 'ID' column
  * 
  */
