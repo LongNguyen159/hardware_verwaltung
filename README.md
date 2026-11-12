@@ -1,5 +1,7 @@
 # Project Description
-Desktop version for the same app as hardware_verwaltung_mobile
+Desktop version for the same app as hardware_verwaltung_mobile.
+
+
 Prerequisite:
 Node.js and npm installed: https://nodejs.org/en/download
 Install Angular CLI: 
